@@ -7,10 +7,6 @@ The package provides "named pipes" which may complement: the **magrittr** packag
 
 When the package is loaded (via `library(AlphaPipes)`) the pipe operators (`%a%` ... `%z%` and `%A%` ... `%Z%`) are dynamically created in **AlphaPipes** namespace. So you cannot import them via `` `%myoperator%` <- AlphaPipes::`%a%` ``. Anyway, such an import does not seem to make sense -- namespaced operators e.g. `` AlphaPipes::`%a%` `` would be inconvenient -- too verbose, while *re-named* "named pipes" e.g. `%aa%` as an alias for `%a%` would be confusing (since symbol `a` would need to be used on the right-hand side anyway).
 
-**AlphaPipes** needs package **clojR** which can be installed from GitHub:
-
-`devtools::install_github('alekrutkowski/clojR')`
-
 ### Installation
 
 `devtools::install_github('alekrutkowski/AlphaPipes')`

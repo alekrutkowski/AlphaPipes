@@ -23,10 +23,6 @@ while *re-named* "named pipes" e.g. `%aa%` as an alias for `%a%`
 would be confusing
 (since symbol `a` would need to be used on the right-hand side anyway).
 
-**AlphaPipes** needs package **clojR** which can be installed from GitHub:
-
-`devtools::install_github('alekrutkowski/clojR')`
-
 ### Installation
 
 `devtools::install_github('alekrutkowski/AlphaPipes')`
