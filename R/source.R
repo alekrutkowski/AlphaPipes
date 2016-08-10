@@ -1,0 +1,54 @@
+#' AlphaPipes: named magrittr-style pipes
+#'
+#' The package provides ``named pipes'' which may complement:
+#' the \pkg{magrittr} package pipes. The named pipes make it possible
+#' to use all lower-case and upper-case letters as the right-hand-side
+#' placeholders for the values piped from the left-hand-side,
+#' while the standard \pkg{magrittr}'s operator \code{\%>\%}
+#' uses only a dot.
+#'
+#' When the package is loaded (via \code{library(AlphaPipes)})
+#' the pipe operators (\code{\%a\%} ... \code{\%z\%} and \code{\%A\%} ... \code{\%Z\%})
+#' are dynamically created in \pkg{AlphaPipes}' namespace.
+#' So you cannot import them via \code{\%myoperator\% <- AlphaPipes::`\%a\%`}.
+#' Anyway, such an import does not seem to make sense -- namespaced operators
+#' e.g. \code{AlphaPipes::`\%a\%`} would be inconvenient -- too verbose,
+#' while re-named named pipes e.g. \code{\%aa\%} as an alias for \code{\%a\%}
+#' would be confusing
+#' (since symbol \code{a} would need to be used on the right-hand side anyway).
+#'
+#' \pkg{AlphaPipes} needs package \pkg{clojR} which can be installed from GitHub:
+#'
+#' \code{devtools::install_github('alekrutkowski/clojR')}
+#'
+#' @examples
+#' # Trivial:
+#' 1:3 %A% mean(A)  # The same as mean(1:3) or 1:3 %>% mean
+#' # Returns 2
+#'
+#' # Showing the actual usefulness - referring to earlier values
+#' # from the piped flow:
+#' data.frame(xx=1:5) %a>%
+#'     (dplyr::mutate(a, nnn = xx+10) %b>%
+#'          dplyr::rename(b, xx2 = xx) %b>%
+#'          cbind(b, a))
+#' # Returns a data.frame:
+#' #    xx2 nnn xx
+#' #  1   1  11  1
+#' #  2   2  12  2
+#' #  3   3  13  3
+#' #  4   4  14  4
+# '#  5   5  15  5
+#'
+#' @docType package
+#' @name AlphaPipes
+NULL
+
+for (L in c(letters, LETTERS))
+    assign(paste0('%',L,'%'),
+           eval(parse(text =
+                          paste0('function(x,y)
+                                  eval(bquote(clojR::`as->`(.(x),
+                                  ',L,',
+                                  .(substitute(y)))))'))))
+rm(L)
