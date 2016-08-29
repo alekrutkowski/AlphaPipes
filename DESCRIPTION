@@ -1,7 +1,7 @@
 Package: AlphaPipes
 Type: Package
 Title: Named magrittr-style pipes
-Version: 0.1.0
+Version: 0.1.1
 Author: Aleksander Rutkowski
 URL: https://github.com/alekrutkowski/AlphaPipes
 LazyData: TRUE

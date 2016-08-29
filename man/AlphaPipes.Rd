@@ -35,9 +35,9 @@ would be confusing
 
 # Showing the actual usefulness - referring to earlier values
 # from the piped flow:
-data.frame(xx=1:5) \%a>\%
-    (dplyr::mutate(a, nnn = xx+10) \%b>\%
-         dplyr::rename(b, xx2 = xx) \%b>\%
+data.frame(xx=1:5) \%a\%
+    (dplyr::mutate(a, nnn = xx+10) \%b\%
+         dplyr::rename(b, xx2 = xx) \%b\%
          cbind(b, a))
 # Returns a data.frame:
 #    xx2 nnn xx
